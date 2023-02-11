@@ -4,8 +4,10 @@
 
 namespace Web.Data.Migrations
 {
-    public partial class First : Migration
+    /// <inheritdoc />
+    public partial class birinchi : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -28,14 +30,14 @@ namespace Web.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nomi = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Qita_Id = table.Column<int>(type: "int", nullable: false)
+                    QitaId = table.Column<int>(name: "Qita_Id", type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Davlatlar", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Davlatlar_Qita_Qita_Id",
-                        column: x => x.Qita_Id,
+                        column: x => x.QitaId,
                         principalTable: "Qita",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -48,14 +50,14 @@ namespace Web.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nomi = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Davlat_id = table.Column<int>(type: "int", nullable: false)
+                    Davlatid = table.Column<int>(name: "Davlat_id", type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Shaharlar", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Shaharlar_Davlatlar_Davlat_id",
-                        column: x => x.Davlat_id,
+                        column: x => x.Davlatid,
                         principalTable: "Davlatlar",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -72,6 +74,7 @@ namespace Web.Data.Migrations
                 column: "Davlat_id");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
